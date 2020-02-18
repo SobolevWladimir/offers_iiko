@@ -1,7 +1,7 @@
 package router
 
 import (
-	"altegra_offers/module/marketing"
+	"offers_iiko/module/marketing"
 )
 
 func init() {

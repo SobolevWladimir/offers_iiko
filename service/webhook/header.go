@@ -1,7 +1,7 @@
 package webhook
 
 import (
-	"altegra_offers/config"
+	"offers_iiko/config"
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"

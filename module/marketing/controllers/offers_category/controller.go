@@ -1,9 +1,9 @@
 package offers_category
 
 import (
-	"altegra_offers/mentity"
-	"altegra_offers/service/offers_engine"
 	"net/http"
+	"offers_iiko/mentity"
+	"offers_iiko/service/offers_engine"
 	"strconv"
 	"strings"
 

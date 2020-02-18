@@ -1,10 +1,10 @@
 package core
 
 import (
-	"altegra_offers/config"
-	"altegra_offers/core/server"
-	"altegra_offers/service"
 	"fmt"
+	"offers_iiko/config"
+	"offers_iiko/core/server"
+	"offers_iiko/service"
 )
 
 // Старт работы ядра

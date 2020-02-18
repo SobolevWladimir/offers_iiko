@@ -1,8 +1,8 @@
 package webhook
 
 import (
-	"altegra_offers/lib/tablename"
 	"log"
+	"offers_iiko/lib/tablename"
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"

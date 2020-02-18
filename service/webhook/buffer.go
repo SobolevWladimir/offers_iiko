@@ -1,8 +1,8 @@
 package webhook
 
 import (
-	"altegra_offers/service/webhook_type"
 	"errors"
+	"offers_iiko/service/webhook_type"
 )
 
 var buffer = make(map[string]string)

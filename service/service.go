@@ -1,8 +1,8 @@
 package service
 
 import (
-	"altegra_offers/config"
 	"log"
+	"offers_iiko/config"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"

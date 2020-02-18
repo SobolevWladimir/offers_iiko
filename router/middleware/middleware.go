@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"altegra_offers/mentity"
+	"offers_iiko/mentity"
 
 	"github.com/gin-gonic/gin"
 )

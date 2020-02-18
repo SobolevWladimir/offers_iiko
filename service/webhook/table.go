@@ -1,6 +1,6 @@
 package webhook
 
-import "altegra_offers/lib/tablename"
+import "offers_iiko/lib/tablename"
 
 func GetUrlByAliasInDB(alias string) (string, error) {
 	var result string

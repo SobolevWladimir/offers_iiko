@@ -1,12 +1,8 @@
 package marketing
 
 import (
-	"altegra_offers/mentity"
-	"altegra_offers/module/marketing/controllers/coupon"
-	"altegra_offers/module/marketing/controllers/coupon_category"
-	"altegra_offers/module/marketing/controllers/offer"
-	"altegra_offers/module/marketing/controllers/offers_category"
-	"altegra_offers/module/marketing/controllers/template"
+	"offers_iiko/mentity"
+	"offers_iiko/module/marketing/controllers/offers_category"
 
 	"github.com/gin-gonic/gin"
 )
@@ -32,9 +28,5 @@ func init() {
 
 // регистрируем котролеры сдесь
 func initControllers() {
-	addControler(&coupon_category.Entity)
-	addControler(&coupon.Entity)
 	addControler(&offers_category.Entity)
-	addControler(&offer.Entity)
-	addControler(&template.Entity)
 }

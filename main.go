@@ -1,6 +1,6 @@
 package main
 
-import "altegra_offers/core"
+import "offers_iiko/core"
 
 func main() {
 	core.Start()

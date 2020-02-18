@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"regexp"
 
-	"altegra_offers/config"
-	"altegra_offers/lib/log"
+	"offers_iiko/config"
+	"offers_iiko/lib/log"
 	"strconv"
 	"strings"
 	"time"

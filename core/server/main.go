@@ -1,8 +1,8 @@
 package server
 
 import (
-	"altegra_offers/config"
-	"altegra_offers/router"
+	"offers_iiko/config"
+	"offers_iiko/router"
 
 	"github.com/gin-gonic/gin"
 )

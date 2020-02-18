@@ -1,8 +1,8 @@
 package router
 
 import (
-	"altegra_offers/config"
-	"altegra_offers/router/middleware"
+	"offers_iiko/config"
+	"offers_iiko/router/middleware"
 
 	"github.com/gin-gonic/gin"
 )

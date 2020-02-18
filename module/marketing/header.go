@@ -1,9 +1,9 @@
 package marketing
 
 import (
-	"altegra_offers/config"
-	"altegra_offers/mentity"
 	"log"
+	"offers_iiko/config"
+	"offers_iiko/mentity"
 	"reflect"
 
 	"github.com/gin-gonic/gin"
