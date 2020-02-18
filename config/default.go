@@ -9,7 +9,7 @@ var DefaultConfig = Config{
 var defaultCore = Core{
 	DbDriver:     "mysql",
 	DbSourceName: "admin:111@tcp(192.168.1.48:3306)/altegra",
-	ServerPort:   ":8080",
+	ServerPort:   ":8091",
 }
 var defaultSyncClient = SyncClient{
 	Run:      false,
