@@ -68,7 +68,12 @@ var check mentity.Action = mentity.Action{
 			c.String(http.StatusBadRequest, err.Error())
 			return
 		}
+		iorder, err := entity.ToIOrderRequest()
+		if err != nil {
+			c.String(http.StatusBadRequest, "i can't convent to iiko order reuest:"+err.Error())
+			return
+		}
 
-		c.JSON(http.StatusOK, entity)
+		c.JSON(http.StatusOK, iorder)
 	},
 }

@@ -56,10 +56,16 @@
   version = "v1.3.3"
 
 [[projects]]
-  name = "github.com/huandu/go-sqlbuilder"
+  name = "github.com/gookit/filter"
   packages = ["."]
-  revision = "a4f634eb604fd667576c805d1320028c9ec9eb5c"
-  version = "v1.7.0"
+  revision = "3dc29edcf20a87498c8905069d12a773e829895b"
+  version = "v1.1.0"
+
+[[projects]]
+  name = "github.com/gookit/goutil"
+  packages = ["arrutil","fmtutil","maputil","mathutil","strutil"]
+  revision = "9b514c615abf350c36823eefd534c0a45481332c"
+  version = "v0.2.5"
 
 [[projects]]
   name = "github.com/jmoiron/sqlx"
@@ -136,6 +142,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "2fcae6aa3024b438bb6577d6c02320c71a0e80a8747a99df39f9e5f2ef180be9"
+  inputs-digest = "07c8ec989abbca1e07aa720b5e27e0d11eca801cf1c49e42fe95bc134db813ab"
   solver-name = "gps-cdcl"
   solver-version = 1
