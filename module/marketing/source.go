@@ -2,7 +2,7 @@ package marketing
 
 import (
 	"offers_iiko/mentity"
-	"offers_iiko/module/marketing/controllers/offers_category"
+	"offers_iiko/module/marketing/controllers/offers"
 
 	"github.com/gin-gonic/gin"
 )
@@ -28,5 +28,5 @@ func init() {
 
 // регистрируем котролеры сдесь
 func initControllers() {
-	addControler(&offers_category.Entity)
+	addControler(&offers.Entity)
 }

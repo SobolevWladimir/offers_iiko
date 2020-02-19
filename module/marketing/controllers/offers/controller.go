@@ -1,4 +1,4 @@
-package offers_category
+package offers
 
 import (
 	"net/http"
@@ -16,8 +16,8 @@ func FindActionByPath(path string) *mentity.Action {
 
 var Entity mentity.Controller = mentity.Controller{
 	Name:    CONTROLLER_NAME,
-	Label:   "Категории акций",
-	Path:    "/offers_category",
+	Label:   "акций",
+	Path:    "/offers",
 	Actions: Actions,
 	Initialization: func() {
 	},
@@ -45,6 +45,7 @@ var Entity mentity.Controller = mentity.Controller{
 }
 var Actions mentity.Actions = mentity.Actions{
 	&list,
+	&check,
 }
 
 var list mentity.Action = mentity.Action{
@@ -54,5 +55,13 @@ var list mentity.Action = mentity.Action{
 	Method: "get",
 	Handler: func(c *gin.Context) {
 		c.String(http.StatusOK, "of")
+	},
+}
+var check mentity.Action = mentity.Action{
+	Name:  "offer_check",
+	Label: "проверить акции",
+	Path:  "/check",
+	Handler: func(c *gin.Context) {
+		c.String(http.StatusOK, "check")
 	},
 }
