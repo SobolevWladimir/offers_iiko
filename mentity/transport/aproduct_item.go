@@ -1,13 +1,11 @@
 package transport
 
+import "offers_iiko/lib/base"
+
 type ProductItem struct {
-	ID      string `json:"id"`
-	Name    string `json:"name"`
-	Weight  string `json:"weight"`
-	New     bool   `json:"new"`
-	Hot     bool   `json:"hot"`
-	Hit     bool   `json:"hit"`
-	Caloric string `json:"caloric"`
-	Vendor1 string `json:"vendor1"`
-	Vendor2 string `json:"vendor2"`
+	ID      int            `json:"id"`
+	Name    string         `json:"name"`
+	Weight  string         `json:"weight"`
+	Vendor1 base.StringInt `json:"vendor1"`
+	Vendor2 base.StringInt `json:"vendor2"`
 }

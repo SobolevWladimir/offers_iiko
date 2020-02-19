@@ -21,7 +21,6 @@ func (str *StringInt) UnmarshalJSON(data []byte) error {
 	case string:
 		*str = StringInt(x)
 	case float64:
-		fmt.Println("float64", x, strconv.FormatFloat(x, 'E', -1, 64))
 		*str = StringInt(strconv.FormatFloat(x, 'f', -1, 64))
 	default:
 		err = fmt.Errorf("json: cannot unmarshal %v into Go value of type null.String", reflect.TypeOf(v).Name())

@@ -3,6 +3,7 @@ package offers
 import (
 	"net/http"
 	"offers_iiko/mentity"
+	"offers_iiko/mentity/transport"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -62,6 +63,12 @@ var check mentity.Action = mentity.Action{
 	Label: "проверить акции",
 	Path:  "/check",
 	Handler: func(c *gin.Context) {
-		c.String(http.StatusOK, "check")
+		entity := new(transport.AOrderRequest)
+		if err := c.ShouldBindJSON(entity); err != nil {
+			c.String(http.StatusBadRequest, err.Error())
+			return
+		}
+
+		c.JSON(http.StatusOK, entity)
 	},
 }
