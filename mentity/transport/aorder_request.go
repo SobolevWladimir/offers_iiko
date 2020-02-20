@@ -9,7 +9,7 @@ type AOrderRequest struct {
 	Order     AOrder     `json:"order"`
 	CityId    int        `json:"cityId"`
 	OrderInfo AOrderInfo `json:"orderInfo"`
-	Address   AAddress   `json:"address"`
+	Address   AAddress   `json:"-"`
 	Platform  string     `json:"platform"`
 	Token     string     `json:"token"`
 }
@@ -34,6 +34,7 @@ func (o *AOrderRequest) GetIOrder() (IOrder, error) {
 	result.PersonCount = o.OrderInfo.Person
 	result.FullSumm = o.Order.TotalPrice
 	result.MarketingSource = o.Platform + " check"
+	result.Items = o.Order.Products.ToOrderItems()
 
 	return result, nil
 }

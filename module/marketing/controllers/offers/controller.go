@@ -4,6 +4,8 @@ import (
 	"net/http"
 	"offers_iiko/mentity"
 	"offers_iiko/mentity/transport"
+	"offers_iiko/service/iiko"
+	"offers_iiko/service/setting"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -47,6 +49,7 @@ var Entity mentity.Controller = mentity.Controller{
 var Actions mentity.Actions = mentity.Actions{
 	&list,
 	&check,
+	&update,
 }
 
 var list mentity.Action = mentity.Action{
@@ -73,7 +76,34 @@ var check mentity.Action = mentity.Action{
 			c.String(http.StatusBadRequest, "i can't convent to iiko order reuest:"+err.Error())
 			return
 		}
-
+		iiko_data, err := setting.GetSettingIikoBySity(entity.CityId)
+		if err != nil {
+			c.String(http.StatusBadRequest, err.Error())
+			return
+		}
+		iorder.Organization = iiko_data.Organization.ValueOrZero()
+		err = iiko.GetLoality(iiko.AuthData{
+			UserId:     iiko_data.UserID.ValueOrZero(),
+			UserSecret: iiko_data.UserSecret.ValueOrZero(),
+		}, iorder)
+		if err != nil {
+			c.String(http.StatusInternalServerError, err.Error())
+			return
+		}
 		c.JSON(http.StatusOK, iorder)
+	},
+}
+var update mentity.Action = mentity.Action{
+	Name:   "offers_storage_updte",
+	Label:  "Обновить временное хранилище ",
+	Path:   "/update",
+	Method: "get",
+	Handler: func(c *gin.Context) {
+		err := setting.UpdataStorage()
+		if err != nil {
+			c.String(http.StatusInternalServerError, err.Error())
+			return
+		}
+		c.String(http.StatusOK, "updated")
 	},
 }

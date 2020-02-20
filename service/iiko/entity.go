@@ -1,4 +1,4 @@
-package webhook
+package iiko
 
 type Webhook struct {
 	Id      string `db:"id" json:"id" valid:"uuid"`

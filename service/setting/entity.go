@@ -1,8 +1,21 @@
-package webhook
+package setting
 
-type Webhook struct {
-	Id      string `db:"id" json:"id" valid:"uuid"`
-	Type    string `db:"type" json:"type" valid:"uuid"`
-	URL     string `db:"url" json:"url" valid:"-"`
-	Deleted bool   `db:"deleted" json:"-" valid:"-"`
+import "gopkg.in/guregu/null.v3"
+
+type SitySetting struct {
+	ID       int
+	SityID   int
+	SityCode string
+	Info     string
+	Phone    string
 }
+type IikoSetting struct {
+	ID           int         `db:"id"`
+	SityId       int         `db:"sity_id"`
+	UserID       null.String `db:"user_id"`
+	UserSecret   null.String `db:"user_secret"`
+	Organization null.String `db:"organization"`
+	CityId       null.String `db:"cityId"`
+	TerminalId   null.String `db:"terminalid"`
+}
+type IikoSettings []IikoSetting
