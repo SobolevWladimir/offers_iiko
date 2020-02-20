@@ -4,24 +4,24 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"offers_iiko/mentity/offerentity"
 	"offers_iiko/mentity/transport"
 	"time"
 )
 
 const URL_Loyalty = "/api/0/orders/calculate_checkin_result"
 
-func GetLoality(auth AuthData, order transport.IOrderRequest) error {
-
+func GetLoality(auth AuthData, order transport.IOrderRequest) (offerentity.Actions, error) {
+	result := offerentity.Actions{}
 	if len(order.Organization) == 0 {
-		return errors.New("для получения данных  необходим  id  организации ")
+		return result, errors.New("для получения данных  необходим  id  организации ")
 	}
 	token, err := GetToken(auth)
 	if err != nil {
-		return err
+		return result, err
 	}
 	client := &http.Client{
 		Timeout: 6 * time.Second,
@@ -36,26 +36,34 @@ func GetLoality(auth AuthData, order transport.IOrderRequest) error {
 	}
 	jsonStr, err := json.Marshal(order)
 	if err != nil {
-		return err
+		return result, err
 	}
 	req, err := http.NewRequest("POST", url.String(), bytes.NewBuffer(jsonStr))
 	req.Header.Set("Content-Type", "application/json")
 	resp, err := client.Do(req)
 	if err != nil {
-		return err
+		return result, err
 	}
 	defer resp.Body.Close()
 
 	robots, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return err
+		return result, err
 	}
 	if resp.StatusCode != 200 {
-		//return errors.New(string(robots))
-		fmt.Println(string(robots))
-		return nil
+		return result, errors.New(string(robots))
 	}
-	fmt.Println("json:", string(robots))
+	check_result := CheckinResult{}
+	err = json.Unmarshal(robots, &check_result)
+	if err != nil {
+		return result, err
+	}
+	actions, err := check_result.GetActons(order)
+	if err != nil {
+		return result, err
 
-	return nil
+	}
+	err = ioutil.WriteFile("/home/wladimir/Documents/test/iiko_output.json", robots, 0644)
+
+	return actions, err
 }

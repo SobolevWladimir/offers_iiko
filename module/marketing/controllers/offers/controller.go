@@ -82,7 +82,7 @@ var check mentity.Action = mentity.Action{
 			return
 		}
 		iorder.Organization = iiko_data.Organization.ValueOrZero()
-		err = iiko.GetLoality(iiko.AuthData{
+		actions, err := iiko.GetLoality(iiko.AuthData{
 			UserId:     iiko_data.UserID.ValueOrZero(),
 			UserSecret: iiko_data.UserSecret.ValueOrZero(),
 		}, iorder)
@@ -90,7 +90,7 @@ var check mentity.Action = mentity.Action{
 			c.String(http.StatusInternalServerError, err.Error())
 			return
 		}
-		c.JSON(http.StatusOK, iorder)
+		c.JSON(http.StatusOK, actions)
 	},
 }
 var update mentity.Action = mentity.Action{

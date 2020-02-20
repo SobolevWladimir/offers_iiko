@@ -22,6 +22,7 @@ func (a *ACartProduct) ToIOrderItem() IOrderItem {
 	result.Code = string(a.Product.Vendor1)
 	result.Amount = float32(a.Quantity)
 	result.Sum = a.Product.SityInfo.Price
+	result.SiteId = a.Product.ID
 	//result.Modifiers = a.GetIOrderItemModifiers()
 	return result
 }

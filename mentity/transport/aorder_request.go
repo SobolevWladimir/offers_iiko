@@ -35,6 +35,5 @@ func (o *AOrderRequest) GetIOrder() (IOrder, error) {
 	result.FullSumm = o.Order.TotalPrice
 	result.MarketingSource = o.Platform + " check"
 	result.Items = o.Order.Products.ToOrderItems()
-
 	return result, nil
 }

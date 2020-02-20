@@ -8,6 +8,7 @@ type IOrderItem struct {
 	Name        string              `json:"-"`
 	Amount      float32             `json:"amount"`
 	Sum         float32             `json:"sum"`
+	SiteId      int                 `json:"-"`
 	Modifiers   IOrderItemModifiers `json:"-"`
 	GuesId      string              `json:"-"`
 }
