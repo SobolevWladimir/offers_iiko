@@ -1,8 +1,16 @@
-package webhook
+package products
 
-type Webhook struct {
-	Id      string `db:"id" json:"id" valid:"uuid"`
-	Type    string `db:"type" json:"type" valid:"uuid"`
-	URL     string `db:"url" json:"url" valid:"-"`
-	Deleted bool   `db:"deleted" json:"-" valid:"-"`
+import (
+	"offers_iiko/mentity/transport"
+)
+
+type TableProduct struct {
+}
+
+func (t *TableProduct) GetProductByCode(code string) (transport.AProductItem, error) {
+	prod, err := FindProductByVendor1(code)
+	return prod.ToAProductItem(), err
+}
+func NewTableProduct() *TableProduct {
+	return new(TableProduct)
 }

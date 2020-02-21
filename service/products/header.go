@@ -1,4 +1,4 @@
-package webhook
+package products
 
 import (
 	"offers_iiko/config"

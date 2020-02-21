@@ -1,15 +1,10 @@
-package webhook
+package products
 
 import (
 	"log"
 )
 
 func (ob *Object) CheckStructure() {
-	//db := connect()
-	// if !checkDb(db) {
-	//   createTable(db)
-	// }
-	// UpdateBuffer()
 }
 
 func Fatal(funcName string, err error) {

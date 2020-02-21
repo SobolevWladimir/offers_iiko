@@ -5,6 +5,7 @@ import (
 	"offers_iiko/mentity"
 	"offers_iiko/mentity/transport"
 	"offers_iiko/service/iiko"
+	"offers_iiko/service/products"
 	"offers_iiko/service/setting"
 	"strings"
 
@@ -82,10 +83,11 @@ var check mentity.Action = mentity.Action{
 			return
 		}
 		iorder.Organization = iiko_data.Organization.ValueOrZero()
+
 		actions, err := iiko.GetLoality(iiko.AuthData{
 			UserId:     iiko_data.UserID.ValueOrZero(),
 			UserSecret: iiko_data.UserSecret.ValueOrZero(),
-		}, iorder)
+		}, iorder, products.NewTableProduct())
 		if err != nil {
 			c.String(http.StatusInternalServerError, err.Error())
 			return

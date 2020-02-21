@@ -17,10 +17,10 @@ type LoyaltyProgramResult struct {
 }
 type LoyaltyProgramResults []LoyaltyProgramResult
 
-func (l *LoyaltyProgramResults) GetActons(order transport.IOrderRequest) (offerentity.Actions, error) {
+func (l *LoyaltyProgramResults) GetActons(order transport.IOrderRequest, tprod TableProduct) (offerentity.Actions, error) {
 	result := offerentity.Actions{}
 	for _, lo := range *l {
-		actions, err := lo.GetActons(order)
+		actions, err := lo.GetActons(order, tprod)
 		if err != nil {
 			return result, err
 		}
@@ -29,7 +29,7 @@ func (l *LoyaltyProgramResults) GetActons(order transport.IOrderRequest) (offere
 
 	return result, nil
 }
-func (l *LoyaltyProgramResult) GetActons(order transport.IOrderRequest) (offerentity.Actions, error) {
+func (l *LoyaltyProgramResult) GetActons(order transport.IOrderRequest, tprod TableProduct) (offerentity.Actions, error) {
 	result := offerentity.Actions{}
 	// discount
 	dis, err := l.Discounts.GetActons(order)
@@ -40,6 +40,9 @@ func (l *LoyaltyProgramResult) GetActons(order transport.IOrderRequest) (offeren
 	//upsale
 	result = append(result, l.Upsales.GetActons()...)
 	//free products
+	free, err := l.FreeProducts.GetActons(order, tprod)
 
-	return result, nil
+	result = append(result, free...)
+
+	return result, err
 }

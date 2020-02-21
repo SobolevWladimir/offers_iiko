@@ -3,8 +3,8 @@ package transport
 import "fmt"
 
 type ProductAddedItem struct {
-	ID      int         `json:"id"`
-	Product ProductItem `json:"product"`
+	ID      int          `json:"id"`
+	Product AProductItem `json:"product"`
 }
 type ProductAddedItems []ProductAddedItem
 

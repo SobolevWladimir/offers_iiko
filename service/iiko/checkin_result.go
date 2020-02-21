@@ -10,6 +10,6 @@ type CheckinResult struct {
 	ValidationWarnings ValidatorWarning `json:"validationWarnings"`
 }
 
-func (c *CheckinResult) GetActons(order transport.IOrderRequest) (offerentity.Actions, error) {
-	return c.LoyatyResult.ProgramResults.GetActons(order)
+func (c *CheckinResult) GetActons(order transport.IOrderRequest, tprod TableProduct) (offerentity.Actions, error) {
+	return c.LoyatyResult.ProgramResults.GetActons(order, tprod)
 }

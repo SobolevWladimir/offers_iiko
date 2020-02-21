@@ -14,7 +14,7 @@ import (
 
 const URL_Loyalty = "/api/0/orders/calculate_checkin_result"
 
-func GetLoality(auth AuthData, order transport.IOrderRequest) (offerentity.Actions, error) {
+func GetLoality(auth AuthData, order transport.IOrderRequest, tprod TableProduct) (offerentity.Actions, error) {
 	result := offerentity.Actions{}
 	if len(order.Organization) == 0 {
 		return result, errors.New("для получения данных  необходим  id  организации ")
@@ -58,7 +58,7 @@ func GetLoality(auth AuthData, order transport.IOrderRequest) (offerentity.Actio
 	if err != nil {
 		return result, err
 	}
-	actions, err := check_result.GetActons(order)
+	actions, err := check_result.GetActons(order, tprod)
 	if err != nil {
 		return result, err
 
