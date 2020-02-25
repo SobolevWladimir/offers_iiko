@@ -8,9 +8,9 @@ import (
 )
 
 // Старт работы ядра
-func Start() {
+func Start(mode int) {
 	// Загружаем конфигурацию
-	setting := config.Load()
+	setting := config.Load(mode)
 
 	// проверяем  подклчение к бд
 	service.SetConfig(setting)
@@ -22,7 +22,7 @@ func Start() {
 	//access.PapEntity.Update()
 
 	server.SetConfig(setting)
-	server.Run()
+	server.Run(mode)
 
 }
 

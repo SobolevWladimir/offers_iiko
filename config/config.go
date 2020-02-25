@@ -2,11 +2,18 @@ package config
 
 import (
 	"fmt"
+	"log"
 	"os"
+	"path/filepath"
 	"reflect"
 	"strconv"
 
 	"github.com/go-ini/ini"
+)
+
+const (
+	DebugMode   = 0
+	ReleaseMode = 1
 )
 
 type Config struct {
@@ -42,12 +49,23 @@ type ConfigWebhook struct {
 	SucsessResponse string `ini:"sucsessResponse" json:"sucsess_response"`
 }
 
-var path = "setting.json"
+var file = "setting.json"
 
 // Загружает  настройки из файла core.setting.ini
 // если файла нет , то создает новый с настройками по умолчанию
 // если неудается открыть файл - паника
-func Load() *Config {
+func Load(mode int) *Config {
+	var path string
+	if mode == ReleaseMode {
+		dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+		if err != nil {
+			log.Fatal(err)
+		}
+		path = dir + "/" + file
+
+	} else {
+		path = file
+	}
 	if !checkExist(path) {
 		_, err := os.Create(path)
 		if err != nil {
