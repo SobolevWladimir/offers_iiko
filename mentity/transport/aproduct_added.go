@@ -3,8 +3,10 @@ package transport
 import "fmt"
 
 type ProductAddedItem struct {
-	ID      int          `json:"id"`
-	Product AProductItem `json:"product"`
+	ID       int          `json:"id"`
+	Product  AProductItem `json:"product"`
+	Parent   int          `json:"parent"`
+	Quantity int          `json:"quantity"`
 }
 type ProductAddedItems []ProductAddedItem
 
@@ -14,6 +16,7 @@ type ProductAdded struct {
 	Noodle    ProductAddedItems `json:"noodle"`
 	Toping    ProductAddedItems `json:"toping"`
 	Souse     ProductAddedItems `json:"souse"`
+	Composite ProductAddedItems `json:"composite"`
 }
 
 func (p *ProductAddedItems) GetVendor1ByProductId(id int) (string, error) {

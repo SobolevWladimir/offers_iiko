@@ -1,6 +1,7 @@
 package products
 
 import (
+	"fmt"
 	"offers_iiko/lib/base"
 	"offers_iiko/mentity/transport"
 
@@ -34,7 +35,8 @@ type ProductItems []ProductItem
 func (p *ProductItem) ToAProductItem() transport.AProductItem {
 	result := transport.AProductItem{}
 	result.ID = p.ID
-	result.Type = p.Type
+	result.Type.ID = p.Type
+	result.Type.Name = storage_product_types.GetById(p.Type).Name
 	result.Name = p.Name
 	result.Comment = p.Comment.ValueOrZero()
 	result.Alias = p.Alias.ValueOrZero()
@@ -53,5 +55,23 @@ func (p *ProductItem) ToAProductItem() transport.AProductItem {
 	result.Article = p.Article.ValueOrZero()
 	result.Vendor1 = base.StringInt(p.Vendor1.ValueOrZero())
 	result.Vendor2 = base.StringInt(p.Vendor2.ValueOrZero())
+	return result
+}
+func (p *ProductItems) FindById(id int) (ProductItem, error) {
+	for _, prod := range *p {
+		if prod.ID == id {
+			return prod, nil
+		}
+	}
+	return ProductItem{}, fmt.Errorf(" продукт %v  не найден в бд (func (p *ProductItems) FindById(id int))", id)
+}
+func (p *ProductItems) FindByIds(ids []int) ProductItems {
+	result := ProductItems{}
+	for _, id := range ids {
+		prod, err := p.FindById(id)
+		if err == nil {
+			result = append(result, prod)
+		}
+	}
 	return result
 }

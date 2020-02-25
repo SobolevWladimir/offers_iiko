@@ -5,6 +5,10 @@ import (
 )
 
 func (ob *Object) CheckStructure() {
+	err := UpdataStorage()
+	if err != nil {
+		panic(" не могу загрузить  продукты  из базы данных")
+	}
 }
 
 func Fatal(funcName string, err error) {

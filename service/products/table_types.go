@@ -14,3 +14,12 @@ func FindAllProductTypes() (ProductTypes, error) {
 	err := db.Select(&result, `select * from `+tablename.ProductTypes)
 	return result, err
 }
+func (t *ProductTypes) GetById(id int) ProductType {
+	for _, typ := range *t {
+		if typ.Id == id {
+			return typ
+		}
+	}
+	return ProductType{}
+
+}

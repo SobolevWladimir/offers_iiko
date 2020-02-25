@@ -9,6 +9,10 @@ type ProductItemSityInfo struct {
 	Price  float32 `json:"price"`
 	Profit float32 `json:"profit"`
 }
+type ProductItemType struct {
+	ID   int    `json:"id" `
+	Name string `json:"name"`
+}
 type AProductItem struct {
 	ID                    int                 `json:"id"`
 	Name                  string              `json:"name"`
@@ -16,7 +20,7 @@ type AProductItem struct {
 	SityInfo              ProductItemSityInfo `json:"sity_info"`
 	Vendor1               base.StringInt      `json:"vendor1"`
 	Vendor2               base.StringInt      `json:"vendor2"`
-	Type                  int                 `json:"-"`
+	Type                  ProductItemType     `json:"type"`
 	Comment               string              `json:"comment"`
 	Alias                 string              `json:"alias"`
 	Number                string              `json:"number"`

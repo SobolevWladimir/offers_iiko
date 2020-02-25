@@ -8,5 +8,5 @@ const (
 )
 
 type TableProduct interface {
-	GetProductByCode(code string) (transport.AProductItem, error)
+	GetProductByCode(code string) (transport.AProduct, error)
 }
