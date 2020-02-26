@@ -63,7 +63,6 @@ func GetLoality(auth AuthData, order transport.IOrderRequest, tprod TableProduct
 		return result, err
 
 	}
-	err = ioutil.WriteFile("/home/wladimir/Documents/test/iiko_output.json", robots, 0644)
 
-	return actions, err
+	return actions, nil
 }
