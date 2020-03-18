@@ -14,6 +14,7 @@ type OfferInfo struct {
 	Name         string `json:"name"`
 	Description  string `json:"description"`
 	IikoActionId string `json:"iiko_action_id"`
+	Target       string `json:"target"`
 }
 type Upsales []Upsale
 
