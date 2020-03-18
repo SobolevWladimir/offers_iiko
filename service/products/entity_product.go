@@ -55,6 +55,8 @@ func (p *ProductItem) ToAProductItem() transport.AProductItem {
 	result.Article = p.Article.ValueOrZero()
 	result.Vendor1 = base.StringInt(p.Vendor1.ValueOrZero())
 	result.Vendor2 = base.StringInt(p.Vendor2.ValueOrZero())
+	result.Images = append(result.Images, result.Image)
+	result.Images = append(result.Images, result.FullImage)
 	return result
 }
 func (p *ProductItems) FindById(id int) (ProductItem, error) {

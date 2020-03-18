@@ -29,6 +29,7 @@ type AProductItem struct {
 	Composition           string              `json:"composition"`
 	Image                 string              `json:"image"`
 	FullImage             string              `json:"full_image"`
+	Images                []string            `json:"images"`
 	New                   bool                `json:"new"`
 	Hot                   bool                `json:"hot"`
 	Hit                   bool                `json:"hit"`
