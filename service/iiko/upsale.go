@@ -2,6 +2,7 @@ package iiko
 
 import (
 	"encoding/json"
+	"fmt"
 	"offers_iiko/mentity/offerentity"
 )
 
@@ -14,7 +15,7 @@ type OfferInfo struct {
 	Name         string `json:"name"`
 	Description  string `json:"description"`
 	IikoActionId string `json:"iiko_action_id"`
-	Target       string `json:"target"`
+	Target       int    `json:"target"`
 }
 type Upsales []Upsale
 
@@ -23,6 +24,7 @@ func (up *Upsales) GetActons() offerentity.Actions {
 	for _, sal := range *up {
 		offer, err := sal.ToOfferInfo()
 		if err != nil {
+			fmt.Println("err", err)
 			continue
 		}
 		result = append(result, offerentity.Action{

@@ -53,6 +53,7 @@ func GetLoality(auth AuthData, order transport.IOrderRequest, tprod TableProduct
 	if resp.StatusCode != 200 {
 		return result, errors.New(string(robots))
 	}
+
 	check_result := CheckinResult{}
 	err = json.Unmarshal(robots, &check_result)
 	if err != nil {
@@ -61,8 +62,10 @@ func GetLoality(auth AuthData, order transport.IOrderRequest, tprod TableProduct
 	actions, err := check_result.GetActons(order, tprod)
 	if err != nil {
 		return result, err
+	}
+	if actions.ContainsiByType(offerentity.TypeUpsale) {
+		return actions, nil
 
 	}
-
-	return actions, nil
+	return offerentity.Actions{}, nil
 }

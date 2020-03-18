@@ -16,3 +16,12 @@ const (
 	TypeActionClientCategory = 8
 	TypeActionCoupon         = 1000
 )
+
+func (as *Actions) ContainsiByType(t int) bool {
+	for _, a := range *as {
+		if a.Type == t {
+			return true
+		}
+	}
+	return false
+}
