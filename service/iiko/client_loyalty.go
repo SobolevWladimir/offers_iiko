@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"offers_iiko/lib/log"
 	"offers_iiko/mentity/offerentity"
 	"offers_iiko/mentity/transport"
 	"time"
@@ -38,6 +39,7 @@ func GetLoality(auth AuthData, order transport.IOrderRequest, tprod TableProduct
 	if err != nil {
 		return result, err
 	}
+	log.LogIIKOReques(jsonStr)
 	req, err := http.NewRequest("POST", url.String(), bytes.NewBuffer(jsonStr))
 	req.Header.Set("Content-Type", "application/json")
 	resp, err := client.Do(req)
@@ -50,6 +52,8 @@ func GetLoality(auth AuthData, order transport.IOrderRequest, tprod TableProduct
 	if err != nil {
 		return result, err
 	}
+	log.LogIIKOResponce(robots)
+
 	if resp.StatusCode != 200 {
 		return result, errors.New(string(robots))
 	}

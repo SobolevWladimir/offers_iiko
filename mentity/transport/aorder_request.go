@@ -28,7 +28,7 @@ func (o *AOrderRequest) GetIOrder() (IOrder, error) {
 	result.Date = IDateTimeUTC(time.Now())
 	result.ID = base.UUID()
 	result.Phone = o.OrderInfo.GetClearPhone()
-	result.IsSelfService = o.OrderInfo.OrderType == "takeAway"
+	result.IsSelfService = o.OrderInfo.OrderType != "delivery"
 	result.Address = o.Address.GetIAddress()
 	result.Comment = o.OrderInfo.Comment
 	result.PersonCount = o.OrderInfo.Person
