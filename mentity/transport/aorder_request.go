@@ -13,23 +13,29 @@ type AOrderRequest struct {
 	Platform  string     `json:"platform"`
 	Token     string     `json:"token"`
 }
+type TableInterface interface {
+	FindCityNameById(id int) (string, error)
+}
 
-func (o *AOrderRequest) ToIOrderRequest() (IOrderRequest, error) {
+func (o *AOrderRequest) ToIOrderRequest(db TableInterface) (IOrderRequest, error) {
 	result := IOrderRequest{}
 	result.Customer = o.OrderInfo.GetICustomer()
 	result.Coupon = o.OrderInfo.Promocode
-	order, err := o.GetIOrder()
-
+	order, err := o.GetIOrder(db)
 	result.Order = order
 	return result, err
 }
-func (o *AOrderRequest) GetIOrder() (IOrder, error) {
+func (o *AOrderRequest) GetIOrder(db TableInterface) (IOrder, error) {
 	result := IOrder{}
 	result.Date = IDateTimeUTC(time.Now())
 	result.ID = base.UUID()
 	result.Phone = o.OrderInfo.GetClearPhone()
 	result.IsSelfService = o.OrderInfo.OrderType != "delivery"
-	result.Address = o.Address.GetIAddress()
+	city, err := db.FindCityNameById(o.CityId)
+	if err != nil {
+		return result, err
+	}
+	result.Address = o.Address.GetIAddress(city)
 	result.Comment = o.OrderInfo.Comment
 	result.PersonCount = o.OrderInfo.Person
 	result.FullSumm = o.Order.TotalPrice

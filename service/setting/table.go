@@ -5,5 +5,4 @@ func FindAll() (IikoSettings, error) {
 	db := connect()
 	err := db.Select(&result, `SELECT * FROM `+GetTableName()+` `)
 	return result, err
-
 }

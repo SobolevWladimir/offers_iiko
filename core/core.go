@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"offers_iiko/config"
 	"offers_iiko/core/server"
+	"offers_iiko/demon"
 	"offers_iiko/service"
 )
 
@@ -16,10 +17,7 @@ func Start(mode int) {
 	service.SetConfig(setting)
 	service.CheckStructure()
 
-	// Запусткаем загрузку кофигураций политк безопастрости
-	//access.PapEntity.Load()
-	// обновляем  переменные для контроля доступа
-	//access.PapEntity.Update()
+	demon.Start()
 
 	server.SetConfig(setting)
 	server.Run(mode)

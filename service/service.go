@@ -32,6 +32,7 @@ func CheckStructure() {
 	for _, sv := range services {
 		sv.CheckStructure()
 	}
+
 }
 func addService(ser ServiceInterface) {
 	services = append(services, ser)

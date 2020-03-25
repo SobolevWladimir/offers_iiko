@@ -5,6 +5,7 @@ type ActionSpecialDiscount struct {
 	SaleType int     `json:"sale_type"` // 0-%, 1-сумма 2-фикс
 	Target   int     `json:"target"`
 	Value    float32 `json:"value"`
+	Mark     string  `json:"mark"` // id  позиции в заказе
 }
 type ActionsSpecialDiscount []ActionSpecialDiscount
 type ActionSpecialDiscountTarget []string

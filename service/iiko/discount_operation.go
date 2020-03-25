@@ -35,6 +35,7 @@ func (ds *DiscountOperations) GetActons(order transport.IOrderRequest) (offerent
 			SaleType: 1,
 			Target:   target,
 			Value:    d.DiscountSum,
+			Mark:     d.OrderItemId,
 		}
 		result = append(result, offerentity.Action{
 			Type: offerentity.TypeSpecialDiscount,

@@ -10,8 +10,9 @@ type AAddress struct {
 	Room     int     `json:"room"`
 }
 
-func (a *AAddress) GetIAddress() IAddress {
+func (a *AAddress) GetIAddress(city string) IAddress {
 	return IAddress{
+		City:      city,
 		Street:    a.Street.Name,
 		Home:      a.Building,
 		Entrance:  strconv.Itoa(a.Entrance),

@@ -9,7 +9,7 @@ type IOrder struct {
 	Phone           string        `json:"phone"`
 	IsSelfService   bool          `json:"isSelfService"`
 	OrderTypeId     string        `json:"-"`
-	Address         IAddress      `json:"-"`
+	Address         IAddress      `json:"address"`
 	Comment         string        `json:"comment"`
 	Conception      string        `json:"conception"`
 	PersonCount     int           `json:"person_count"`

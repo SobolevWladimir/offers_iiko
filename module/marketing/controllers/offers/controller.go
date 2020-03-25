@@ -72,7 +72,9 @@ var check mentity.Action = mentity.Action{
 			c.String(http.StatusBadRequest, err.Error())
 			return
 		}
-		iorder, err := entity.ToIOrderRequest()
+
+		to := setting.TableObject{}
+		iorder, err := entity.ToIOrderRequest(&to)
 		if err != nil {
 			c.String(http.StatusBadRequest, "i can't convent to iiko order reuest:"+err.Error())
 			return
