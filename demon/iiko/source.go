@@ -1,7 +1,11 @@
 package iiko
 
-import "fmt"
+import "time"
 
 func (o *Object) Start() {
-	fmt.Println("demon iiko start")
+	nWather := NomenclatureWather{
+		Interval: time.Second * 600,
+	}
+	nWather.Start()
+
 }

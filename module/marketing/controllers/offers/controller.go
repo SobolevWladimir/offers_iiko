@@ -74,7 +74,8 @@ var check mentity.Action = mentity.Action{
 		}
 
 		to := setting.TableObject{}
-		iorder, err := entity.ToIOrderRequest(&to)
+		nomeclature := iiko.StorageGenNomenclatureByKey(entity.CityId)
+		iorder, err := entity.ToIOrderRequest(&to, &nomeclature)
 		if err != nil {
 			c.String(http.StatusBadRequest, "i can't convent to iiko order reuest:"+err.Error())
 			return

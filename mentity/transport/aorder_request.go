@@ -16,16 +16,20 @@ type AOrderRequest struct {
 type TableInterface interface {
 	FindCityNameById(id int) (string, error)
 }
+type NomenclatureInterface interface {
+	FindCategoryNameByProductCode(code string) (string, error)
+	FindProductIdByCode(code string) (string, error)
+}
 
-func (o *AOrderRequest) ToIOrderRequest(db TableInterface) (IOrderRequest, error) {
+func (o *AOrderRequest) ToIOrderRequest(db TableInterface, nom NomenclatureInterface) (IOrderRequest, error) {
 	result := IOrderRequest{}
 	result.Customer = o.OrderInfo.GetICustomer()
 	result.Coupon = o.OrderInfo.Promocode
-	order, err := o.GetIOrder(db)
+	order, err := o.GetIOrder(db, nom)
 	result.Order = order
 	return result, err
 }
-func (o *AOrderRequest) GetIOrder(db TableInterface) (IOrder, error) {
+func (o *AOrderRequest) GetIOrder(db TableInterface, nom NomenclatureInterface) (IOrder, error) {
 	result := IOrder{}
 	result.Date = IDateTimeUTC(time.Now())
 	result.ID = base.UUID()
@@ -40,6 +44,6 @@ func (o *AOrderRequest) GetIOrder(db TableInterface) (IOrder, error) {
 	result.PersonCount = o.OrderInfo.Person
 	result.FullSumm = o.Order.TotalPrice
 	result.MarketingSource = o.Platform + " check"
-	result.Items = o.Order.Products.ToOrderItems()
+	result.Items = o.Order.Products.ToOrderItems(nom)
 	return result, nil
 }

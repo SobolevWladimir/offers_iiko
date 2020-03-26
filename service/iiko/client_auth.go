@@ -11,8 +11,9 @@ import (
 )
 
 type AuthData struct {
-	UserId     string
-	UserSecret string
+	UserId       string
+	UserSecret   string
+	Organization string
 }
 
 const URL_Auth = "/api/0/auth/access_token"

@@ -26,16 +26,16 @@ type DiscountOperations []DiscountOperation
 func (ds *DiscountOperations) GetActons(order transport.IOrderRequest) (offerentity.Actions, error) {
 	result := offerentity.Actions{}
 	for _, d := range *ds {
-		target, err := order.Order.Items.GetSiteIdById(d.OrderItemId)
+		target, err := order.Order.Items.GetSiteIdByOrderItemId(d.OrderItemId)
 		if err != nil {
 			return result, err
 		}
 		action := offerentity.ActionSpecialDiscount{
-			Max:      1,
-			SaleType: 1,
-			Target:   target,
-			Value:    d.DiscountSum,
-			Mark:     d.OrderItemId,
+			Max:         1,
+			SaleType:    1,
+			Target:      target,
+			Value:       d.DiscountSum,
+			OrderItemId: d.OrderItemId,
 		}
 		result = append(result, offerentity.Action{
 			Type: offerentity.TypeSpecialDiscount,

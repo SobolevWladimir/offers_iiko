@@ -22,3 +22,6 @@ func GetSettingIikoBySity(id int) (IikoSetting, error) {
 	}
 	return IikoSetting{}, fmt.Errorf(" не могу найти настройки iiko  для города(id: %v)", id)
 }
+func GetAllSettingIiko() IikoSettings {
+	return iiko_settings
+}
