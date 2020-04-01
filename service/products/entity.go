@@ -21,6 +21,9 @@ func (t *TableProduct) GetProductByCode(code string) (transport.AProduct, error)
 	result := transport.AProduct{}
 
 	prod, err := FindProductByVendor1(code)
+	if err != nil {
+		return result, err
+	}
 	result.AProductItem = prod.ToAProductItem()
 	added := storage_product_added.FindByParent(prod.ID)
 	//composite
