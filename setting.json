@@ -1,7 +1,7 @@
 {
 	"core": {
 		"db_driver": "mysql",
-		"db_source_name": "admin:111@tcp(192.168.1.48:3306)/altegra",
+		"db_source_name": "admin:111@tcp(10.8.0.3:3306)/altegra",
 		"server_port": ":8091"
 	},
 	"client": {

@@ -17,7 +17,7 @@ func (pg *FreeProductsGroup) GetActons(order transport.IOrderRequest, tprod Tabl
 	for _, code := range pg.ProductCodes {
 		product, err := tprod.GetProductByCode(code)
 		if err != nil {
-			return result, err
+			continue
 		}
 		action := offerentity.Action{
 			Type: offerentity.TypePresent,
@@ -33,7 +33,7 @@ func (pgs *FreeProductsGroups) GetActons(order transport.IOrderRequest, tprod Ta
 	for _, pg := range *pgs {
 		actions, err := pg.GetActons(order, tprod)
 		if err != nil {
-			return result, err
+			continue
 		}
 		result = append(result, actions...)
 	}
