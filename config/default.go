@@ -1,10 +1,8 @@
 package config
 
 var DefaultConfig = Config{
-	Core:          defaultCore,
-	Client:        defaultSyncClient,
-	FileServer:    defaultFileServer,
-	ConfigWebhook: defaultConfig_webhook,
+	Core:   defaultCore,
+	Client: defaultSyncClient,
 }
 var defaultCore = Core{
 	DbDriver:     "mysql",
@@ -18,15 +16,4 @@ var defaultSyncClient = SyncClient{
 	IP:       "127.0.0.1",
 	Port:     "8080",
 	Debug:    "0",
-}
-var defaultConfig_webhook = ConfigWebhook{
-	Send:            "3",
-	Interval:        "1",
-	SucsessResponse: "200,201",
-}
-var defaultFileServer = FileServer{
-	Path:            "./files",
-	ImageFolderName: "images",
-	FilesFolderName: "files",
-	Images:          "png,jpeg,jpg",
 }

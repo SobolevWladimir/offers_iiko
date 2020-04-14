@@ -172,8 +172,6 @@ func createDefault(path string) {
 	}
 	createDefaulSection(cfg, "Core", defaultCore)
 	createDefaulSection(cfg, "SyncClient", defaultSyncClient)
-	createDefaulSection(cfg, "FileServer", defaultFileServer)
-	createDefaulSection(cfg, "Config_webhook", defaultConfig_webhook)
 	cfg.SaveTo(path)
 
 }
